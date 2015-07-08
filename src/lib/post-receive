@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+source /etc/debrewery.cfg
+
+repo=`basename $PWD | cut -f 1 -d '.'`
+commitmessage=`git log -1 HEAD --pretty=format:%s`
+
+echo $repo > /tmp/buildinfo
+
+if [ -d /tmp/packages ]; then
+    rm -f /tmp/packages/*
+else
+    mkdir /tmp/packages
+fi
+
+for distro in $distributions; do
+    for arch in $architectures; do
+        chroot $rootdir/$distro/$arch /usr/local/bin/debrewery-agent.sh -d $distro -a $arch -u "`whoami`@`hostname -f`:$PWD" -r $repo -m $commitmessage &
+    done
+done
+
+wait
+
+cat /tmp/buildinfo
+echo -e "\a"
