@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+GLOBAL_CONFIG=$HOME/.config/debrewery/debrewery.cfg
+GLOBAL_CONFIG_DIR=$HOME/.config/debrewery
+
+case $1 in
+    "setup")
+        echo "Not implemented yet"
+        ;;
+    "enable")
+        if [ -f $GLOBAL_CONFIG ]; then
+            echo -n "Enter project name:"
+            read PROJECT_NAME
+            echo -n "Enter project version:"
+            read PROJECT_VERSION
+            source $GLOBAL_CONFIG
+            cd $2
+            git init
+            git remote add $DEBREW_REMOTE_NAME "root@"$DEBREW_REMOTE_HOST":/opt/repo/"$2".git"
+            dh_make --createorig -s -y -p $PROJECT_NAME"_"$PROJECT_VERSION
+            cd .. && git clone --bare $2 $2".git"
+            scp -r $2".git" "root@"$DEBREW_REMOTE_HOST":/opt/repo/"
+            #ssh "root@"$DEBREW_REMOTE_HOST
+        else
+            echo "No config file found"
+            exit 1
+        fi
+        echo -n "Enter the name"
+        ;;
+    "disable")
+        echo "Not implemented yet"
+        ;;
+esac
