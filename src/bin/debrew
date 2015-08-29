@@ -2,12 +2,42 @@
 
 GLOBAL_CONFIG=$HOME/.config/debrewery/debrewery.cfg
 GLOBAL_CONFIG_DIR=$HOME/.config/debrewery
-DEBREW_SSH_PORT='22'
+DEBREW_REMOTE_PORT='22'
 
 
 case $1 in
     "setup")
-        echo "Not implemented yet"
+        echo -n "Specify the role of this machine(developer or buildserver): "
+        read DEBREW_MACHINE_ROLE
+        case $DEBREW_MACHINE_ROLE in
+            "developer")
+                echo -n "Specify the buildserver name: "
+                read DEBREW_REMOTE_NAME
+                echo -n "Specify the buildserver URL(host:port): "
+                read DEBREW_REMOTE_URL
+                DEBREW_REMOTE_HOST=`echo $DEBREW_REMOTE_URL | cut -f 1 -d ':'`
+                DEBREW_REMOTE_PORT=`echo $DEBREW_REMOTE_URL | cut -f 2 -d ':'`
+                if [ -z $DEBREW_REMOTE_PORT ]; then
+                    DEBREW_REMOTE_PORT='22'
+                fi
+                cat <<EOF > $GLOBAL_CONFIG
+DEBREW_MACHINE_ROLE="$DEBREW_MACHINE_ROLE"
+DEBREW_REMOTE_NAME="$DEBREW_REMOTE_NAME"
+DEBREW_REMOTE_HOST="$DEBREW_REMOTE_HOST"
+DEBREW_REMOTE_PORT="$DEBREW_REMOTE_PORT"
+EOF
+                ;;
+            "buildserver")
+                echo -n "Specify supported distributions(comma separated): "
+                read DEBREW_DISTRIBUTIONS
+                echo -n "Specify supported CPU architectures(comma separated): "
+                read DEBREW_ARCHITECTURES
+                cat <<EOF > $GLOBAL_CONFIG
+DEBREW_DISTRIBUTIONS="`echo $DEBREW_DISTRIBUTIONS | tr ',' '\n'`"
+DEBREW_ARCHITECTURES="`echo $DEBREW_ARCHITECTURES | tr ',' '\n'`"
+EOF
+                ;;
+        esac
         ;;
     "enable")
         if [ -f $GLOBAL_CONFIG ]; then
@@ -27,9 +57,9 @@ NAME="$PROJECT_NAME"
 FLAVOURS="any"
 EOF
             cd .. && git clone --bare $2 $2".git"
-            ssh -p $DEBREW_SSH_PORT "root@"$DEBREW_REMOTE_HOST mkdir -p /opt/repo
-            scp -P $DEBREW_SSH_PORT -r $2".git" "root@"$DEBREW_REMOTE_HOST":/opt/repo/"
-            ssh -p $DEBREW_SSH_PORT "root@"$DEBREW_REMOTE_HOST ln -s /usr/lib/debrewery/post-receive /opt/repo/"$2".git/hooks/post-receive
+            ssh -p $DEBREW_REMOTE_PORT "root@"$DEBREW_REMOTE_HOST mkdir -p /opt/repo
+            scp -P $DEBREW_REMOTE_PORT -r $2".git" "root@"$DEBREW_REMOTE_HOST":/opt/repo/"
+            ssh -p $DEBREW_REMOTE_PORT "root@"$DEBREW_REMOTE_HOST ln -s /usr/lib/debrewery/post-receive /opt/repo/"$2".git/hooks/post-receive
             echo -e "\n\n\nProject successfully enabled"
         else
             echo "No config file found"

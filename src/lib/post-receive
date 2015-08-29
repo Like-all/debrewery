@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source /etc/debrewery.cfg
+source $HOME/.config/debrewery/debrewery.cfg
 
 repo=`basename $PWD | cut -f 1 -d '.'`
 commitmessage=`git log -1 HEAD --pretty=format:%s`

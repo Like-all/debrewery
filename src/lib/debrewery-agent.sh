@@ -49,11 +49,8 @@ if echo $FLAVOURS | grep -oq $DISTRO; then
         echo -e '\e[0;34mbuild succeeded\e[0m'
         lintian_errors=$(more +/'running lintian' /tmp/debuild.log | grep 'E:' | wc -l)
         lintian_warnings=$(more +/'running lintian' /tmp/debuild.log | grep 'W:' | wc -l)
-        #ssh $BUILDHOST buildinfo $DISTRO $ARCH succeeded
-        #ssh $BUILDHOST lintianinfo $REPO $lintian_errors $lintian_warnings
     else
         echo -e '\e[0;31mbuild failed'
-        #ssh $BUILDHOST buildinfo $DISTRO $ARCH failed
         tail -n 15 /tmp/debuild.log
         echo -e '\e[0m'
     fi
