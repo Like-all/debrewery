@@ -15,7 +15,7 @@ fi
 
 for distro in $DEBREW_DISTRIBUTIONS; do
     for arch in $DEBREW_ARCHITECTURES; do
-        chroot $rootdir/$distro/$arch /usr/local/bin/debrewery-agent.sh -d $distro -a $arch -u "`whoami`@`hostname -f`:$PWD" -r $repo -m $commitmessage &
+        chroot /opt/chroot/$distro/$arch /usr/local/bin/debrewery-agent.sh -d $distro -a $arch -u "`whoami`@`hostname -f`:$PWD" -r $repo -m $commitmessage &
     done
 done
 
