@@ -1,0 +1,2 @@
+src/bin/debrew /usr/bin/
+src/lib/post-receive /usr/lib/debrewery/

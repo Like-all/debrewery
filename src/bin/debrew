@@ -2,6 +2,8 @@
 
 GLOBAL_CONFIG=$HOME/.config/debrewery/debrewery.cfg
 GLOBAL_CONFIG_DIR=$HOME/.config/debrewery
+DEBREW_SSH_PORT='22'
+
 
 case $1 in
     "setup")
@@ -9,25 +11,45 @@ case $1 in
         ;;
     "enable")
         if [ -f $GLOBAL_CONFIG ]; then
-            echo -n "Enter project name:"
-            read PROJECT_NAME
-            echo -n "Enter project version:"
-            read PROJECT_VERSION
             source $GLOBAL_CONFIG
+            echo -n "Enter project name: "
+            read PROJECT_NAME
+            echo -n "Enter project version: "
+            read PROJECT_VERSION
             cd $2
             git init
-            git remote add $DEBREW_REMOTE_NAME "root@"$DEBREW_REMOTE_HOST":/opt/repo/"$2".git"
+            git remote add $DEBREW_REMOTE_NAME "ssh://root@"$DEBREW_REMOTE_HOST":"$DEBREW_SSH_PORT"/opt/repo/"$2".git"
             dh_make --createorig -s -y -p $PROJECT_NAME"_"$PROJECT_VERSION
+            cat <<EOF > debian/package.sh
+export DEBFULLNAME="$DEBFULLNAME"
+export DEBEMAIL="$DEBEMAIL"
+NAME="$PROJECT_NAME"
+FLAVOURS="any"
+EOF
             cd .. && git clone --bare $2 $2".git"
-            scp -r $2".git" "root@"$DEBREW_REMOTE_HOST":/opt/repo/"
-            #ssh "root@"$DEBREW_REMOTE_HOST
+            ssh -p $DEBREW_SSH_PORT "root@"$DEBREW_REMOTE_HOST mkdir -p /opt/repo
+            scp -P $DEBREW_SSH_PORT -r $2".git" "root@"$DEBREW_REMOTE_HOST":/opt/repo/"
+            ssh -p $DEBREW_SSH_PORT "root@"$DEBREW_REMOTE_HOST ln -s /usr/lib/debrewery/post-receive /opt/repo/"$2".git/hooks/post-receive
+            echo -e "\n\n\nProject successfully enabled"
         else
             echo "No config file found"
             exit 1
         fi
-        echo -n "Enter the name"
         ;;
     "disable")
+        if [ -f $GLOBAL_CONFIG ]; then
+            source $GLOBAL_CONFIG
+            cd $2 && git remote rm $DEBREW_REMOTE_NAME
+            echo "Remote \"$DEBREW_REMOTE_NAME\" deleted"
+        else
+            echo "No config file found"
+            exit 1
+        fi
+        ;;
+    "upgrade")
+        echo "Not implemented yet"
+        ;;
+    "doctor")
         echo "Not implemented yet"
         ;;
 esac
