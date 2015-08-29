@@ -7,6 +7,7 @@ DEBREW_REMOTE_PORT='22'
 
 case $1 in
     "setup")
+        mkdir -p $GLOBAL_CONFIG_DIR
         echo -n "Specify the role of this machine(developer or buildserver): "
         read DEBREW_MACHINE_ROLE
         case $DEBREW_MACHINE_ROLE in
