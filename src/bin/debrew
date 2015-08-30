@@ -34,6 +34,7 @@ EOF
                 echo -n "Specify supported CPU architectures(comma separated): "
                 read DEBREW_ARCHITECTURES
                 cat <<EOF > $GLOBAL_CONFIG
+DEBREW_MACHINE_ROLE="$DEBREW_MACHINE_ROLE"
 DEBREW_DISTRIBUTIONS="`echo $DEBREW_DISTRIBUTIONS | tr ',' '\n'`"
 DEBREW_ARCHITECTURES="`echo $DEBREW_ARCHITECTURES | tr ',' '\n'`"
 EOF
@@ -43,25 +44,32 @@ EOF
     "enable")
         if [ -f $GLOBAL_CONFIG ]; then
             source $GLOBAL_CONFIG
-            echo -n "Enter project name: "
-            read PROJECT_NAME
-            echo -n "Enter project version: "
-            read PROJECT_VERSION
-            cd $2
-            git init
-            git remote add $DEBREW_REMOTE_NAME "ssh://root@"$DEBREW_REMOTE_HOST":"$DEBREW_SSH_PORT"/opt/repo/"$2".git"
-            dh_make --createorig -s -y -p $PROJECT_NAME"_"$PROJECT_VERSION
-            cat <<EOF > debian/package.sh
+            case $DEBREW_MACHINE_ROLE in:
+                "developer")
+                    echo -n "Enter project name: "
+                    read PROJECT_NAME
+                    echo -n "Enter project version: "
+                    read PROJECT_VERSION
+                    cd $2
+                    git init
+                    git remote add $DEBREW_REMOTE_NAME "ssh://root@"$DEBREW_REMOTE_HOST":"$DEBREW_SSH_PORT"/opt/repo/"$2".git"
+                    dh_make --createorig -s -y -p $PROJECT_NAME"_"$PROJECT_VERSION
+                    cat <<EOF > debian/package.sh
 export DEBFULLNAME="$DEBFULLNAME"
 export DEBEMAIL="$DEBEMAIL"
 NAME="$PROJECT_NAME"
 FLAVOURS="any"
 EOF
-            cd .. && git clone --bare $2 $2".git"
-            ssh -p $DEBREW_REMOTE_PORT "root@"$DEBREW_REMOTE_HOST mkdir -p /opt/repo
-            scp -P $DEBREW_REMOTE_PORT -r $2".git" "root@"$DEBREW_REMOTE_HOST":/opt/repo/"
-            ssh -p $DEBREW_REMOTE_PORT "root@"$DEBREW_REMOTE_HOST ln -s /usr/lib/debrewery/post-receive /opt/repo/"$2".git/hooks/post-receive
-            echo -e "\n\n\nProject successfully enabled"
+                    cd .. && git clone --bare $2 $2".git"
+                    ssh -p $DEBREW_REMOTE_PORT "root@"$DEBREW_REMOTE_HOST mkdir -p /opt/repo
+                    scp -P $DEBREW_REMOTE_PORT -r $2".git" "root@"$DEBREW_REMOTE_HOST":/opt/repo/"
+                    ssh -p $DEBREW_REMOTE_PORT "root@"$DEBREW_REMOTE_HOST ln -s /usr/lib/debrewery/post-receive /opt/repo/"$2".git/hooks/post-receive
+                    echo -e "\n\n\nProject successfully enabled"
+                    ;;
+                *)
+                    echo "This command is only supported in \"developer\" machine role"
+                    ;;
+            esac
         else
             echo "No config file found"
             exit 1
@@ -70,8 +78,15 @@ EOF
     "disable")
         if [ -f $GLOBAL_CONFIG ]; then
             source $GLOBAL_CONFIG
-            cd $2 && git remote rm $DEBREW_REMOTE_NAME
-            echo "Remote \"$DEBREW_REMOTE_NAME\" deleted"
+            case $DEBREW_MACHINE_ROLE in:
+                "developer")
+                    cd $2 && git remote rm $DEBREW_REMOTE_NAME
+                    echo "Remote \"$DEBREW_REMOTE_NAME\" deleted"
+                    ;;
+                *)
+                    echo "This command is only supported in \"developer\" machine role"
+                    ;;
+            esac
         else
             echo "No config file found"
             exit 1
