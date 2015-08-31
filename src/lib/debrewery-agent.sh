@@ -32,7 +32,7 @@ if [ -d $REPO ]; then
     git pull
     git submodule update --recursive
 else
-    git clone --recursive $URL && cd $REPO
+    git clone --recursive "/opt/repo/"$REPO".git" && cd $REPO
 fi
 debclean > /dev/null
 source ./debian/package.sh
