@@ -36,7 +36,7 @@ else
 fi
 debclean > /dev/null
 source ./debian/package.sh
-if echo $FLAVOURS | grep -oq $DISTRO || test $FLAVOURS = 'any'; then
+if [[ echo $FLAVOURS | grep -oq $DISTRO ]] || [[ $FLAVOURS = 'any' ]]; then
     if [ -f ./autogen.sh ]; then
         ./autogen.sh
     fi
