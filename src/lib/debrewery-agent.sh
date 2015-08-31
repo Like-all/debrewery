@@ -23,7 +23,7 @@ done
 BUILDHOST=`echo $URL | cut -f 1 -d '/'`
 
 echo -e '\e[0;32m'$DISTRO'/'$ARCH'\e[0m'
-cd  /root/dev
+cd  /opt/debrewery
 rm *.deb *.?z *.build *.upload *.changes *.dsc
 if [ -d $REPO ]; then
     cd $REPO
@@ -54,5 +54,5 @@ if echo $FLAVOURS | grep -oq $DISTRO; then
         tail -n 15 /tmp/debuild.log
         echo -e '\e[0m'
     fi
-    dupload --nomail /root/dev/*.changes
+    dupload --nomail /opt/debrewery/*.changes
 fi
