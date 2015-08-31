@@ -13,5 +13,5 @@ Description: set of scripts for building debian packages within chroot environme
 
 Package: debrewery-agent
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, devscripts, git
+Depends: ${shlibs:Depends}, ${misc:Depends}, devscripts, git, dh-make, dupload
 Description: set of scripts for building debian packages within chroot environments
