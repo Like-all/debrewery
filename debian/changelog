@@ -1,6 +1,7 @@
 debrewery (0.1-3) UNRELEASED; urgency=medium
 
   * ubuntu-archive-keyring dependency added
+  * install and configure wasteland.ml repo
 
  -- Azer Abdullaev (Like All) <like-all@yandex.com>  Sat, 05 Sep 2015 17:29:41 +0300
 
