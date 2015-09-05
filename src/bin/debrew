@@ -58,13 +58,18 @@ DEBREW_REMOTE_PORT="$DEBREW_REMOTE_PORT"
 EOF
                 ;;
             "buildserver")
-                echo -e "Specify supported distributions: \n\e[0;33m(comma separated)\e[0m"
+                echo -e "Specify supported distributions: \n\e[0;33mValues are comma separated, e.g. \e[0;31mjessie,trusty\e[0m"
                 tput cuu 2; tput cuf 33
                 read DEBREW_DISTRIBUTIONS
                 tput cud 2
-                echo -n "Specify supported CPU architectures(comma separated): "
+                echo -n "Specify supported CPU architectures: \n\e[0;33mValues are comma separated, e.g. \e[0;31mamd64,i386\e[0m"
+                tput cuu 2; tput cuf 37
                 read DEBREW_ARCHITECTURES
-                echo -n "Specify upload URL(ssh://[username]@[hostname])"
+                tput cud 2
+                echo -n "Specify upload URL: \n\e[0;33mUsed for generating .dupload.conf\nFormat: \e[0;31mssh://[username]@[hostname]:[port]/[path to the incoming directory]\e[0m"
+                tput cuu 3; tput cuf 20
+                read DEBREW_DUPLOAD_URL
+                tput cud 3
                 cat <<EOF > $GLOBAL_CONFIG
 DEBREW_MACHINE_ROLE="$DEBREW_MACHINE_ROLE"
 DEBREW_DISTRIBUTIONS="`echo $DEBREW_DISTRIBUTIONS | tr ',' '\n'`"
