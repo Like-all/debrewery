@@ -97,7 +97,7 @@ EOF
     "disable")
         if [ -f $GLOBAL_CONFIG ]; then
             source $GLOBAL_CONFIG
-            case $DEBREW_MACHINE_ROLE in:
+            case $DEBREW_MACHINE_ROLE in
                 "developer")
                     cd $2 && git remote rm $DEBREW_REMOTE_NAME
                     echo "Remote \"$DEBREW_REMOTE_NAME\" deleted"
