@@ -31,17 +31,17 @@ function mountall {
 case $1 in
     "setup")
         mkdir -p $GLOBAL_CONFIG_DIR
-        echo -n "Specify the role of this machine: \n\e[034;mAcceptable values: \e[0;31mdeveloper\e[034;m or \e[0;31mbuildserver\e[0m"
+        echo -e "Specify the role of this machine: \n\e[034;mAcceptable values: \e[0;31mdeveloper\e[034;m or \e[0;31mbuildserver\e[0m"
         tput cuu 2; tput cuf 34
         read DEBREW_MACHINE_ROLE
         tput cud 2
         case $DEBREW_MACHINE_ROLE in
             "developer")
-                echo -n "Specify the buildserver name: \n\e[034;mUsed as a remote name in Git\e[0m"
+                echo -e "Specify the buildserver name: \n\e[034;mUsed as a remote name in Git\e[0m"
                 tput cuu 2; tput cuf 30
                 read DEBREW_REMOTE_NAME
                 tput cud 2
-                echo -n "Specify the buildserver URL: \n\e[034;mFormat: \e[0;31mhost:port\e[0m"
+                echo -e "Specify the buildserver URL: \n\e[034;mFormat: \e[0;31mhost:port\e[0m"
                 tput cuu 2; tput cuf 29
                 read DEBREW_REMOTE_URL
                 tput cud 2
