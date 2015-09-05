@@ -63,7 +63,7 @@ EOF
     "enable")
         if [ -f $GLOBAL_CONFIG ]; then
             source $GLOBAL_CONFIG
-            case $DEBREW_MACHINE_ROLE in:
+            case $DEBREW_MACHINE_ROLE in
                 "developer")
                     echo -n "Enter project name: "
                     read PROJECT_NAME
