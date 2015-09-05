@@ -85,6 +85,7 @@ EOF
                             if [ $answer = 'y' ]; then
                                 rm -fr /opt/chroot/$distro/$arch/*
                                 debootstrap --arch=$arch --foreign $distro /opt/chroot/$distro/$arch/
+                                chroot /opt/chroot/$distro/$arch/ /debootstrap/debootstrap --second-stage
                             else
                                 echo "Leaving /opt/chroot/$distro/$arch untouched, hope that's ok."
                             fi
@@ -93,7 +94,6 @@ EOF
                             debootstrap --arch=$arch --foreign $distro /opt/chroot/$distro/$arch/
                         fi
                         mkdir /opt/chroot/$distro/$arch/opt/repo
-                        chroot /opt/chroot/$distro/$arch/ /debootstrap/debootstrap --second-stage
                         chroot /opt/chroot/$distro/$arch/ apt-key adv --keyserver keyserver.ubuntu.com --recv-keys "8C2C65DE"
                         chroot /opt/chroot/$distro/$arch/ bash -c 'apt-get -y --force-yes install lsb-release; echo "deb http://wasteland.ml/debian/ `lsb_release -cs` main contrib non-free" | tee /etc/apt/sources.list.d/wasteland.ml.list; apt-get update'
                     done
