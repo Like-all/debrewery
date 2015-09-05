@@ -4,6 +4,8 @@ GLOBAL_CONFIG=$HOME/.config/debrewery/debrewery.cfg
 GLOBAL_CONFIG_DIR=$HOME/.config/debrewery
 DEBREW_REMOTE_PORT='22'
 
+
+
 function mountall {
     source $GLOBAL_CONFIG
     case $1 in
@@ -50,20 +52,24 @@ DEBREW_REMOTE_PORT="$DEBREW_REMOTE_PORT"
 EOF
                 ;;
             "buildserver")
-                echo -n "Specify supported distributions(comma separated): "
+                echo -e "Specify supported distributions: \n\e[0;34m(comma separated)\e[0m"
+                tput cuu 2; tput cuf 34
                 read DEBREW_DISTRIBUTIONS
+                tput cud 2
                 echo -n "Specify supported CPU architectures(comma separated): "
                 read DEBREW_ARCHITECTURES
+                echo -n "Specify upload URL(ssh://[username]@[hostname])"
                 cat <<EOF > $GLOBAL_CONFIG
 DEBREW_MACHINE_ROLE="$DEBREW_MACHINE_ROLE"
 DEBREW_DISTRIBUTIONS="`echo $DEBREW_DISTRIBUTIONS | tr ',' '\n'`"
 DEBREW_ARCHITECTURES="`echo $DEBREW_ARCHITECTURES | tr ',' '\n'`"
 EOF
                 source $GLOBAL_CONFIG
+                mountall off
                 for distro in $DEBREW_DISTRIBUTIONS; do
                     for arch in $DEBREW_ARCHITECTURES;do
                         if [ -d /opt/chroot/$distro/$arch ];then
-                            echo "Directory /opt/chroot/$distro/$arch already exists. Do you want to overwrite it?[y/N]:"
+                            echo -n "Directory /opt/chroot/$distro/$arch already exists. Do you want to overwrite it?[y/N]: "
                             read answer
                             if [ $answer = 'y' ]; then
                                 rm -fr /opt/chroot/$distro/$arch/*
