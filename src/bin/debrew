@@ -70,10 +70,18 @@ EOF
                 tput cuu 3; tput cuf 20
                 read DEBREW_DUPLOAD_URL
                 tput cud 3
+                DEBREW_DUPLOAD_USERNAME=`echo $DEBREW_DUPLOAD_URL | sed -e "s|^.*//||;s|@.*||"`
+                DEBREW_DUPLOAD_FQDN=`echo $DEBREW_DUPLOAD_URL | sed -e "s|^.*@||;s|:.*||"`
+                DEBREW_DUPLOAD_PORT=`echo $DEBREW_DUPLOAD_URL | sed -e "s|^.*:||;s|/.*||"`
+                DEBREW_DUPLOAD_PATH=`echo $DEBREW_DUPLOAD_URL | sed -e "s|^.*[0-9]||"`
                 cat <<EOF > $GLOBAL_CONFIG
 DEBREW_MACHINE_ROLE="$DEBREW_MACHINE_ROLE"
 DEBREW_DISTRIBUTIONS="`echo $DEBREW_DISTRIBUTIONS | tr ',' '\n'`"
 DEBREW_ARCHITECTURES="`echo $DEBREW_ARCHITECTURES | tr ',' '\n'`"
+DEBREW_DUPLOAD_USERNAME="$DEBREW_DUPLOAD_USERNAME"
+DEBREW_DUPLOAD_FQDN="$DEBREW_DUPLOAD_FQDN"
+DEBREW_DUPLOAD_PORT="$DEBREW_DUPLOAD_PORT"
+DEBREW_DUPLOAD_PATH="$DEBREW_DUPLOAD_PATH"
 EOF
                 source $GLOBAL_CONFIG
                 mountall off
