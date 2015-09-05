@@ -56,7 +56,7 @@ EOF
                         fi
                         chroot /opt/chroot/$distro/$arch/ /debootstrap/debootstrap --second-stage
                         chroot /opt/chroot/$distro/$arch/ apt-key adv --keyserver keyserver.ubuntu.com --recv-keys "8C2C65DE"
-                        chroot /opt/chroot/$distro/$arch/ bash -c 'apt-get install lsb-release; distro=`lsb_release -c | awk "{print $2}"`; echo "deb http://wasteland.ml/debian/ $distro main contrib non-free" | tee /etc/apt/sources.list.d/wasteland.ml.list; apt-get update'
+                        chroot /opt/chroot/$distro/$arch/ bash -c 'apt-get -y --force-yes install lsb-release; echo "deb http://wasteland.ml/debian/ `lsb_release -cs` main contrib non-free" | tee /etc/apt/sources.list.d/wasteland.ml.list; apt-get update'
                     done
                 done
                 ;;
