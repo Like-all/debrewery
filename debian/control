@@ -8,7 +8,7 @@ Homepage: https://github.com/Like-all/debrewery
 
 Package: debrewery
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, openssh-client, git
+Depends: ${shlibs:Depends}, ${misc:Depends}, openssh-client, git, debootstrap
 Description: set of scripts for building debian packages within chroot environments
 
 Package: debrewery-agent

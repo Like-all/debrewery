@@ -38,6 +38,25 @@ DEBREW_MACHINE_ROLE="$DEBREW_MACHINE_ROLE"
 DEBREW_DISTRIBUTIONS="`echo $DEBREW_DISTRIBUTIONS | tr ',' '\n'`"
 DEBREW_ARCHITECTURES="`echo $DEBREW_ARCHITECTURES | tr ',' '\n'`"
 EOF
+                source $GLOBAL_CONFIG
+                for distro in $DEBREW_DISTRIBUTIONS; do
+                    for arch in $DEBREW_ARCHITECTURES;do
+                        if [ -d /opt/chroot/$distro/$arch ];then
+                            echo "Directory /opt/chroot/$distro/$arch already exists. Do you want to overwrite it?[y/N]:"
+                            read answer
+                            if [ $answer = 'y' ]; then
+                                rm -fr /opt/chroot/$distro/$arch/*
+                                debootstrap --arch=$arch --foreign $distro /opt/chroot/$distro/$arch/
+                            else
+                                echo "Leaving /opt/chroot/$distro/$arch untouched, hope this is ok."
+                            fi
+                        else
+                            mkdir -p /opt/chroot/$distro/$arch/
+                            debootstrap --arch=$arch --foreign $distro /opt/chroot/$distro/$arch/
+                        fi
+                        chroot /opt/chroot/$distro/$arch/ /debootstrap/debootstrap --second-stage
+                    done
+                done
                 ;;
         esac
         ;;

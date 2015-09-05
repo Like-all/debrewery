@@ -1,5 +1,12 @@
-debrewery (0.1-1) UNRELEASED; urgency=low
+debrewery (0.1-2) UNRELEASED; urgency=medium
 
+  * configuring chroot images with setup commands
+
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Sat, 05 Sep 2015 17:03:30 +0300
+
+debrewery (0.1-1) unstable; urgency=low
+
+  [ Azer Abdullaev (Like All) ]
   * Initial release
 
- -- Azer Abdullaev (Like All) <like-all@yandex.com>  Sat, 29 Aug 2015 17:06:05 +0300
+ -- Azer Abdullaev <buckstabu@yandex-team.ru>  Sat, 05 Sep 2015 17:03:06 +0300
