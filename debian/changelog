@@ -1,8 +1,14 @@
-debrewery (0.1-2) UNRELEASED; urgency=medium
+debrewery (0.1-3) UNRELEASED; urgency=medium
+
+  * ubuntu-archive-keyring dependency added
+
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Sat, 05 Sep 2015 17:29:41 +0300
+
+debrewery (0.1-2) unstable; urgency=medium
 
   * configuring chroot images with setup commands
 
- -- Azer Abdullaev (Like All) <like-all@yandex.com>  Sat, 05 Sep 2015 17:03:30 +0300
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Sat, 05 Sep 2015 17:29:21 +0300
 
 debrewery (0.1-1) unstable; urgency=low
 
