@@ -14,6 +14,8 @@ function mountall {
                 for arch in $DEBREW_ARCHITECTURES; do
                     mount --bind /opt/repo/ /opt/chroot/$distro/$arch/opt/repo
                     mount --bind /etc/resolv.conf /opt/chroot/$distro/$arch/etc/resolv.conf
+                    mount --bind /root/.gnupg/ /opt/chroot/$distro/$arch/root/.gnupg/
+                    mount --bind /root/.ssh/ /opt/chroot/$distro/$arch/root/.ssh/
                 done
             done
             ;;
@@ -22,6 +24,8 @@ function mountall {
                 for arch in $DEBREW_ARCHITECTURES; do
                     umount /opt/chroot/$distro/$arch/opt/repo
                     umount /opt/chroot/$distro/$arch/etc/resolv.conf
+                    umount /opt/chroot/$distro/$arch/root/.gnupg/
+                    umount /opt/chroot/$distro/$arch/root/.ssh/
                 done
             done
             ;;
@@ -100,8 +104,10 @@ EOF
                         else
                             mkdir -p /opt/chroot/$distro/$arch/
                             debootstrap --arch=$arch --foreign $distro /opt/chroot/$distro/$arch/
+                            mkdir /opt/chroot/$distro/$arch/opt/repo
+                            mkdir /opt/chroot/$distro/$arch/root/.gnupg
+                            mkdir /opt/chroot/$distro/$arch/root/.ssh
                         fi
-                        mkdir /opt/chroot/$distro/$arch/opt/repo
                         chroot /opt/chroot/$distro/$arch/ apt-key adv --keyserver keyserver.ubuntu.com --recv-keys "8C2C65DE"
                         chroot /opt/chroot/$distro/$arch/ bash -c 'apt-get -y --force-yes install lsb-release; echo "deb http://wasteland.ml/debian/ `lsb_release -cs` main contrib non-free" | tee /etc/apt/sources.list.d/wasteland.ml.list; apt-get update'
                     done
