@@ -107,6 +107,9 @@ EOF
                     done
                 done
                 mountall on
+                if ! grep -oq "/usr/bin/debrew mountall on" /etc/rc.local; then
+                    echo "/usr/bin/debrew mountall on" >> /etc/rc.local
+                fi
                 ;;
         esac
         ;;
@@ -163,6 +166,16 @@ EOF
         ;;
     "upgrade")
         echo "Not implemented yet"
+        ;;
+    "mountall")
+        case $2 in
+            "on")
+                mountall on
+                ;;
+            "off")
+                mountall off
+                ;;
+        esac
         ;;
     "doctor")
         echo "Not implemented yet"
