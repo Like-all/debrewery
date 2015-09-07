@@ -130,7 +130,7 @@ EOF
                     read PROJECT_VERSION
                     cd $2
                     git init
-                    git remote add $DEBREW_REMOTE_NAME "ssh://root@"$DEBREW_REMOTE_HOST":"$DEBREW_SSH_PORT"/opt/repo/"$2".git"
+                    git remote add $DEBREW_REMOTE_NAME "ssh://root@"$DEBREW_REMOTE_HOST":"$DEBREW_REMOTE_PORT"/opt/repo/"$2".git"
                     dh_make --createorig -s -y -p $PROJECT_NAME"_"$PROJECT_VERSION
                     cat <<EOF > debian/package.sh
 export DEBFULLNAME="$DEBFULLNAME"
