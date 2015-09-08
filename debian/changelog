@@ -5,6 +5,7 @@ debrewery (0.1-3) UNRELEASED; urgency=medium
   * forced installation of lsb-release tool
   * mountall implementation
   * fancy prompts
+  * dupload.conf generator
 
  -- Azer Abdullaev (Like All) <like-all@yandex.com>  Sat, 05 Sep 2015 17:29:41 +0300
 

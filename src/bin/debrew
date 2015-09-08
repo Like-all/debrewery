@@ -4,8 +4,6 @@ GLOBAL_CONFIG=$HOME/.config/debrewery/debrewery.cfg
 GLOBAL_CONFIG_DIR=$HOME/.config/debrewery
 DEBREW_REMOTE_PORT='22'
 
-
-
 function mountall {
     source $GLOBAL_CONFIG
     case $1 in
@@ -70,22 +68,34 @@ EOF
                 tput cuu 2; tput cuf 37
                 read DEBREW_ARCHITECTURES
                 tput cud 2
-                echo -e "Specify upload URL: \n\e[0;33mUsed for generating .dupload.conf\nFormat: \e[0;31mssh://[username]@[hostname]:[port]/[path to the incoming directory]\e[0m"
+                echo -e "Specify the testing upload URL: \n\e[0;33mUsed for generating .dupload.conf\nFormat: \e[0;31mssh://[username]@[hostname]:[port]/[path to the incoming directory]\e[0m"
                 tput cuu 3; tput cuf 20
-                read DEBREW_DUPLOAD_URL
+                read DEBREW_DUPLOAD_TESTING_URL
                 tput cud 3
-                DEBREW_DUPLOAD_USERNAME=`echo $DEBREW_DUPLOAD_URL | sed -e "s|^.*//||;s|@.*||"`
-                DEBREW_DUPLOAD_FQDN=`echo $DEBREW_DUPLOAD_URL | sed -e "s|^.*@||;s|:.*||"`
-                DEBREW_DUPLOAD_PORT=`echo $DEBREW_DUPLOAD_URL | sed -e "s|^.*:||;s|/.*||"`
-                DEBREW_DUPLOAD_PATH=`echo $DEBREW_DUPLOAD_URL | sed -e "s|^.*[0-9]||"`
+                echo -e "Specify the production upload URL: \n\e[0;33mUsed for generating .dupload.conf\nFormat: \e[0;31mssh://[username]@[hostname]:[port]/[path to the incoming directory]\e[0m"
+                tput cuu 3; tput cuf 20
+                read DEBREW_DUPLOAD_PRODUCTION_URL
+                tput cud 3
+                DEBREW_DUPLOAD_TESTING_USERNAME=`echo $DEBREW_DUPLOAD_TESTING_URL | sed -e "s|^.*//||;s|@.*||"`
+                DEBREW_DUPLOAD_TESTING_FQDN=`echo $DEBREW_DUPLOAD_TESTING_URL | sed -e "s|^.*@||;s|:.*||"`
+                DEBREW_DUPLOAD_TESTING_PORT=`echo $DEBREW_DUPLOAD_TESTING_URL | sed -e "s|^.*:||;s|/.*||"`
+                DEBREW_DUPLOAD_TESTING_PATH=`echo $DEBREW_DUPLOAD_TESTING_URL | sed -e "s|^.*[0-9]||"`
+                DEBREW_DUPLOAD_PRODUCTION_USERNAME=`echo $DEBREW_DUPLOAD_PRODUCTION_URL | sed -e "s|^.*//||;s|@.*||"`
+                DEBREW_DUPLOAD_PRODUCTION_FQDN=`echo $DEBREW_DUPLOAD_PRODUCTION_URL | sed -e "s|^.*@||;s|:.*||"`
+                DEBREW_DUPLOAD_PRODUCTION_PORT=`echo $DEBREW_DUPLOAD_PRODUCTION_URL | sed -e "s|^.*:||;s|/.*||"`
+                DEBREW_DUPLOAD_PRODUCTION_PATH=`echo $DEBREW_DUPLOAD_PRODUCTION_URL | sed -e "s|^.*[0-9]||"`
                 cat <<EOF > $GLOBAL_CONFIG
 DEBREW_MACHINE_ROLE="$DEBREW_MACHINE_ROLE"
 DEBREW_DISTRIBUTIONS="`echo $DEBREW_DISTRIBUTIONS | tr ',' '\n'`"
 DEBREW_ARCHITECTURES="`echo $DEBREW_ARCHITECTURES | tr ',' '\n'`"
-DEBREW_DUPLOAD_USERNAME="$DEBREW_DUPLOAD_USERNAME"
-DEBREW_DUPLOAD_FQDN="$DEBREW_DUPLOAD_FQDN"
-DEBREW_DUPLOAD_PORT="$DEBREW_DUPLOAD_PORT"
-DEBREW_DUPLOAD_PATH="$DEBREW_DUPLOAD_PATH"
+DEBREW_DUPLOAD_TESTING_USERNAME="$DEBREW_DUPLOAD_TESTING_USERNAME"
+DEBREW_DUPLOAD_TESTING_FQDN="$DEBREW_DUPLOAD_TESTING_FQDN"
+DEBREW_DUPLOAD_TESTING_PORT="$DEBREW_DUPLOAD_TESTING_PORT"
+DEBREW_DUPLOAD_TESTING_PATH="$DEBREW_DUPLOAD_TESTING_PATH"
+DEBREW_DUPLOAD_PRODUCTION_USERNAME="$DEBREW_DUPLOAD_PRODUCTION_USERNAME"
+DEBREW_DUPLOAD_PRODUCTION_FQDN="$DEBREW_DUPLOAD_PRODUCTION_FQDN"
+DEBREW_DUPLOAD_PRODUCTION_PORT="$DEBREW_DUPLOAD_PRODUCTION_PORT"
+DEBREW_DUPLOAD_PRODUCTION_PATH="$DEBREW_DUPLOAD_PRODUCTION_PATH"
 EOF
                 source $GLOBAL_CONFIG
                 mountall off
@@ -108,6 +118,18 @@ EOF
                             mkdir /opt/chroot/$distro/$arch/root/.gnupg
                             mkdir /opt/chroot/$distro/$arch/root/.ssh
                         fi
+                        cat << EOF > /opt/chroot/$distro/$arch/root/.dupload.conf
+package config;
+\$default_host = "testing";
+
+\$cfg{'testing'} = {
+    fqdn => \"$DEBREW_DUPLOAD_TESTING_FQDN\";
+    login => \"$DEBREW_DUPLOAD_TESTING_USERNAME\";
+    method => \"scpb\";
+    options => \"-P $DEBREW_DUPLOAD_TESTING_PORT\";
+    incoming => \"$DEBREW_DUPLOAD_TESTING_PATH\";
+}
+EOF
                         chroot /opt/chroot/$distro/$arch/ apt-key adv --keyserver keyserver.ubuntu.com --recv-keys "8C2C65DE"
                         chroot /opt/chroot/$distro/$arch/ bash -c 'apt-get -y --force-yes install lsb-release; echo "deb http://wasteland.ml/debian/ `lsb_release -cs` main contrib non-free" | tee /etc/apt/sources.list.d/wasteland.ml.list; apt-get update'
                     done

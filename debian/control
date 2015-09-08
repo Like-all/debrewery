@@ -7,11 +7,11 @@ Standards-Version: 3.9.5
 Homepage: https://github.com/Like-all/debrewery
 
 Package: debrewery
-Architecture: any
+Architecture: all
 Depends: ${shlibs:Depends}, ${misc:Depends}, openssh-client, git, debootstrap, ubuntu-archive-keyring
 Description: set of scripts for building debian packages within chroot environments
 
 Package: debrewery-agent
-Architecture: any
+Architecture: all
 Depends: ${shlibs:Depends}, ${misc:Depends}, devscripts, git, dh-make, dupload
 Description: set of scripts for building debian packages within chroot environments
