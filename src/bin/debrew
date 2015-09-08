@@ -69,11 +69,11 @@ EOF
                 read DEBREW_ARCHITECTURES
                 tput cud 2
                 echo -e "Specify the testing upload URL: \n\e[0;33mUsed for generating .dupload.conf\nFormat: \e[0;31mssh://[username]@[hostname]:[port]/[path to the incoming directory]\e[0m"
-                tput cuu 3; tput cuf 20
+                tput cuu 3; tput cuf 32
                 read DEBREW_DUPLOAD_TESTING_URL
                 tput cud 3
                 echo -e "Specify the production upload URL: \n\e[0;33mUsed for generating .dupload.conf\nFormat: \e[0;31mssh://[username]@[hostname]:[port]/[path to the incoming directory]\e[0m"
-                tput cuu 3; tput cuf 20
+                tput cuu 3; tput cuf 35
                 read DEBREW_DUPLOAD_PRODUCTION_URL
                 tput cud 3
                 DEBREW_DUPLOAD_TESTING_USERNAME=`echo $DEBREW_DUPLOAD_TESTING_URL | sed -e "s|^.*//||;s|@.*||"`
