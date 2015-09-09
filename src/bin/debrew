@@ -123,11 +123,11 @@ package config;
 \$default_host = "testing";
 
 \$cfg{'testing'} = {
-    fqdn => \"$DEBREW_DUPLOAD_TESTING_FQDN\";
-    login => \"$DEBREW_DUPLOAD_TESTING_USERNAME\";
-    method => \"scpb\";
-    options => \"-P $DEBREW_DUPLOAD_TESTING_PORT\";
-    incoming => \"$DEBREW_DUPLOAD_TESTING_PATH\";
+    fqdn => "$DEBREW_DUPLOAD_TESTING_FQDN";
+    login => "$DEBREW_DUPLOAD_TESTING_USERNAME";
+    method => "scpb";
+    options => "-P $DEBREW_DUPLOAD_TESTING_PORT";
+    incoming => "$DEBREW_DUPLOAD_TESTING_PATH";
 }
 EOF
                         chroot /opt/chroot/$distro/$arch/ apt-key adv --keyserver keyserver.ubuntu.com --recv-keys "8C2C65DE"
