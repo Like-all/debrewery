@@ -35,9 +35,12 @@ function make_debootstrap {
     arch=$2
     mkdir -p /opt/chroot/$distro/$arch/
     debootstrap --arch=$arch --foreign $distro /opt/chroot/$distro/$arch/
+    chroot /opt/chroot/$distro/$arch/ /debootstrap/debootstrap --second-stage
+    mount --bind /etc/resolv.conf /opt/chroot/$distro/$arch/etc/resolv.conf
+    chroot /opt/chroot/$distro/$arch/ apt-get update
+    chroot /opt/chroot/$distro/$arch/ apt-get -y --force-yes install locales
     cat /opt/chroot/$distro/$arch/usr/share/i18n/SUPPORTED > /opt/chroot/$distro/$arch/etc/locale.gen
     chroot /opt/chroot/$distro/$arch/ locale-gen
-    chroot /opt/chroot/$distro/$arch/ /debootstrap/debootstrap --second-stage
     mkdir /opt/chroot/$distro/$arch/opt/repo
     mkdir /opt/chroot/$distro/$arch/root/.gnupg
     mkdir /opt/chroot/$distro/$arch/root/.ssh
