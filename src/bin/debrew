@@ -30,6 +30,19 @@ function mountall {
     esac
 }
 
+function make_debootstrap {
+    distro=$1
+    arch=$2
+    mkdir -p /opt/chroot/$distro/$arch/
+    debootstrap --arch=$arch --foreign $distro /opt/chroot/$distro/$arch/
+    cat /opt/chroot/$distro/$arch/usr/share/i18n/SUPPORTED > /opt/chroot/$distro/$arch/etc/locale.gen
+    chroot /opt/chroot/$distro/$arch/ locale-gen
+    chroot /opt/chroot/$distro/$arch/ /debootstrap/debootstrap --second-stage
+    mkdir /opt/chroot/$distro/$arch/opt/repo
+    mkdir /opt/chroot/$distro/$arch/root/.gnupg
+    mkdir /opt/chroot/$distro/$arch/root/.ssh
+}
+
 case $1 in
     "setup")
         mkdir -p $GLOBAL_CONFIG_DIR
@@ -105,18 +118,13 @@ EOF
                             echo -n "Directory /opt/chroot/$distro/$arch already exists. Do you want to overwrite it?[y/N]: "
                             read answer
                             if [ $answer = 'y' ]; then
-                                rm -fr /opt/chroot/$distro/$arch/*
-                                debootstrap --arch=$arch --foreign $distro /opt/chroot/$distro/$arch/
-                                chroot /opt/chroot/$distro/$arch/ /debootstrap/debootstrap --second-stage
+                                rm -fr /opt/chroot/$distro/$arch/
+                                make_debootstrap $distro $arch
                             else
                                 echo "Leaving /opt/chroot/$distro/$arch untouched, hope that's ok."
                             fi
                         else
-                            mkdir -p /opt/chroot/$distro/$arch/
-                            debootstrap --arch=$arch --foreign $distro /opt/chroot/$distro/$arch/
-                            mkdir /opt/chroot/$distro/$arch/opt/repo
-                            mkdir /opt/chroot/$distro/$arch/root/.gnupg
-                            mkdir /opt/chroot/$distro/$arch/root/.ssh
+                            make_debootstrap $distro $arch
                         fi
                         cat << EOF > /opt/chroot/$distro/$arch/root/.dupload.conf
 package config;
