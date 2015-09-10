@@ -133,7 +133,7 @@ EOF
                         mount --bind /etc/resolv.conf /opt/chroot/$distro/$arch/etc/resolv.conf
                         chroot /opt/chroot/$distro/$arch/ apt-key adv --keyserver keyserver.ubuntu.com --recv-keys "8C2C65DE"
                         chroot /opt/chroot/$distro/$arch/ bash -c 'apt-get -y --force-yes install lsb-release; echo "deb http://wasteland.ml/debian/ `lsb_release -cs` main contrib non-free" | tee /etc/apt/sources.list.d/wasteland.ml.list; apt-get update'
-                        chroot /opt/chroot/$distro/$arch/ localedef -i $LANG -c -f $LC_CTYPE -A /usr/share/locale/locale.alias $LANG
+                        echo 'export LANG=C' > /opt/chroot/$distro/$arch/root/.bashrc
                     done
                 done
                 mountall on
