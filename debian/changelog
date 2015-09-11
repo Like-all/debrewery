@@ -1,4 +1,10 @@
-debrewery (0.1-3) UNRELEASED; urgency=medium
+debrewery (0.1-4) UNRELEASED; urgency=medium
+
+  * First proper build
+
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Fri, 11 Sep 2015 17:21:01 +0300
+
+debrewery (0.1-3) unstable; urgency=medium
 
   * ubuntu-archive-keyring dependency added
   * install and configure wasteland.ml repo
@@ -7,7 +13,7 @@ debrewery (0.1-3) UNRELEASED; urgency=medium
   * fancy prompts
   * dupload.conf generator
 
- -- Azer Abdullaev (Like All) <like-all@yandex.com>  Sat, 05 Sep 2015 17:29:41 +0300
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Fri, 11 Sep 2015 17:20:57 +0300
 
 debrewery (0.1-2) unstable; urgency=medium
 
