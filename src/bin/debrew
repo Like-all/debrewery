@@ -14,6 +14,7 @@ function mountall {
                     mount --bind /etc/resolv.conf /opt/chroot/$distro/$arch/etc/resolv.conf
                     mount --bind /root/.gnupg/ /opt/chroot/$distro/$arch/root/.gnupg/
                     mount --bind /root/.ssh/ /opt/chroot/$distro/$arch/root/.ssh/
+                    mount --bind /root/dev/debrew/src/lib/debrewery-agent.sh /opt/chroot/$distro/$arch/usr/lib/debrewery/debrewery-agent.sh
                 done
             done
             ;;
@@ -24,6 +25,7 @@ function mountall {
                     umount /opt/chroot/$distro/$arch/etc/resolv.conf
                     umount /opt/chroot/$distro/$arch/root/.gnupg/
                     umount /opt/chroot/$distro/$arch/root/.ssh/
+                    umount /opt/chroot/$distro/$arch/usr/lib/debrewery/debrewery-agent.sh
                 done
             done
             ;;
@@ -44,6 +46,8 @@ function make_debootstrap {
     mkdir /opt/chroot/$distro/$arch/opt/repo
     mkdir /opt/chroot/$distro/$arch/root/.gnupg
     mkdir /opt/chroot/$distro/$arch/root/.ssh
+    mkdir /opt/chroot/$distro/$arch/usr/lib/debrewery/
+    touch /opt/chroot/$distro/$arch/usr/lib/debrewery/debrewery-agent.sh
 }
 
 case $1 in
