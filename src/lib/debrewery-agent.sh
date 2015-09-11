@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-while getopts "d:a:u:r:m:" opts; do
+while getopts "d:a:e:r:m:" opts; do
     case $opts in
         d)
             DISTRO=$OPTARG
@@ -8,8 +8,8 @@ while getopts "d:a:u:r:m:" opts; do
         a)
             ARCH=$OPTARG
             ;;
-        u)
-            URL=$OPTARG
+        e)
+            BUILD_ENVIRONMENT=$OPTARG
             ;;
         r)
             REPO=$OPTARG
@@ -20,7 +20,7 @@ while getopts "d:a:u:r:m:" opts; do
     esac
 done
 
-BUILDHOST=`echo $URL | cut -f 1 -d '/'`
+FLAVOURS='any'
 
 echo -e '\e[0;32m'$DISTRO'/'$ARCH'\e[0m'
 cd  /opt/debrewery
@@ -36,6 +36,14 @@ else
 fi
 debclean > /dev/null
 source ./debian/package.sh
+case $BUILD_ENVIRONMENT in
+    'testing')
+        FLAVOURS=$PRODUCTION_FLAVOURS
+        ;;
+    'production')
+        FLAVOURS=$TESTING_FLAVOURS
+        ;;
+esac
 if echo $FLAVOURS | grep -oq $DISTRO || [[ $FLAVOURS = 'any' ]]; then
     if [ -f ./autogen.sh ]; then
         ./autogen.sh
@@ -54,5 +62,5 @@ if echo $FLAVOURS | grep -oq $DISTRO || [[ $FLAVOURS = 'any' ]]; then
         tail -n 15 /tmp/debuild.log
         echo -e '\e[0m'
     fi
-    dupload --nomail /opt/debrewery/*.changes
+    dupload --nomail --to $BUILD_ENVIRONMENT /opt/debrewery/*.changes
 fi

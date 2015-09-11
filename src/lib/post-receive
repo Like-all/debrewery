@@ -4,22 +4,22 @@ source $HOME/.config/debrewery/debrewery.cfg
 
 repo=`basename $PWD | cut -f 1 -d '.'`
 commitmessage=`git log -1 HEAD --pretty=format:%s`
+stable_hash=`git rev-parse stable`
+current_hash=`git rev-parse HEAD`
+build_environment="testing"
 
-echo $repo > /tmp/buildinfo
-
-if [ -d /tmp/packages ]; then
-    rm -f /tmp/packages/*
+if [[ $stable_hash != $current_hash ]]; then
+    build_environment="testing"
 else
-    mkdir /tmp/packages
+    build_environment="production"
 fi
 
 for distro in $DEBREW_DISTRIBUTIONS; do
     for arch in $DEBREW_ARCHITECTURES; do
-        chroot /opt/chroot/$distro/$arch /usr/lib/debrewery/debrewery-agent.sh -d $distro -a $arch -u "`whoami`@`hostname -f`:$PWD" -r $repo -m $commitmessage &
+        chroot /opt/chroot/$distro/$arch /usr/lib/debrewery/debrewery-agent.sh -d $distro -a $arch -e $build_environment -r $repo -m $commitmessage &
     done
 done
 
 wait
 
-cat /tmp/buildinfo
 echo -e "\a"
