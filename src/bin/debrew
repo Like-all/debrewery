@@ -24,7 +24,7 @@ function mountall {
             for distro in $DEBREW_DISTRIBUTIONS; do
                 for arch in $DEBREW_ARCHITECTURES; do
                     umount /opt/chroot/$distro/$arch/opt/repo
-                    umount /opt/chroot/$distro/$arch/opt/proc
+                    umount /opt/chroot/$distro/$arch/proc
                     umount /opt/chroot/$distro/$arch/etc/resolv.conf
                     umount /opt/chroot/$distro/$arch/etc/hostname
                     umount /opt/chroot/$distro/$arch/root/.gnupg
