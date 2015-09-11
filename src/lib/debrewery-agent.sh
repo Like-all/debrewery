@@ -45,7 +45,7 @@ if echo $FLAVOURS | grep -oq $DISTRO || [[ $FLAVOURS = 'any' ]]; then
     program_version=`dpkg-parsechangelog | grep Version | cut -f 2 -d ' ' | cut -f 1 -d '-'`
     echo -e "\e[0;31m$NAME_$program_version\e[0m"
     dh_make --createorig -s -y -p $NAME"_"$program_version
-    if debuild -us -uc -eDEB_BUILD_OPTIONS="parallel=32" > /tmp/debuild.log 2>&1; then
+    if debuild -eDEB_BUILD_OPTIONS="parallel=32" > /tmp/debuild.log 2>&1; then
         echo -e '\e[0;34mbuild succeeded\e[0m'
         lintian_errors=$(more +/'running lintian' /tmp/debuild.log | grep 'E:' | wc -l)
         lintian_warnings=$(more +/'running lintian' /tmp/debuild.log | grep 'W:' | wc -l)
