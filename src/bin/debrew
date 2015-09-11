@@ -12,6 +12,7 @@ function mountall {
                 for arch in $DEBREW_ARCHITECTURES; do
                     mount --bind /opt/repo/ /opt/chroot/$distro/$arch/opt/repo
                     mount --bind /proc/ /opt/chroot/$distro/$arch/proc
+                    mount --bind /sys/ /opt/chroot/$distro/$arch/sys
                     mount --bind /etc/resolv.conf /opt/chroot/$distro/$arch/etc/resolv.conf
                     mount --bind /etc/hostname /opt/chroot/$distro/$arch/etc/hostname
                     mount --bind /root/.gnupg/ /opt/chroot/$distro/$arch/root/.gnupg
@@ -25,6 +26,7 @@ function mountall {
                 for arch in $DEBREW_ARCHITECTURES; do
                     umount /opt/chroot/$distro/$arch/opt/repo
                     umount /opt/chroot/$distro/$arch/proc
+                    umount /opt/chroot/$distro/$arch/sys
                     umount /opt/chroot/$distro/$arch/etc/resolv.conf
                     umount /opt/chroot/$distro/$arch/etc/hostname
                     umount /opt/chroot/$distro/$arch/root/.gnupg
