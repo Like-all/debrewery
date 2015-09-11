@@ -15,7 +15,7 @@ function mountall {
                     mount --bind /sys/ /opt/chroot/$distro/$arch/sys
                     mount --bind /etc/resolv.conf /opt/chroot/$distro/$arch/etc/resolv.conf
                     mount --bind /etc/hostname /opt/chroot/$distro/$arch/etc/hostname
-                    mount --bind /etc/hostname /opt/chroot/$distro/$arch/etc/hosts
+                    mount --bind /etc/hosts /opt/chroot/$distro/$arch/etc/hosts
                     mount --bind /root/.gnupg/ /opt/chroot/$distro/$arch/root/.gnupg
                     mount --bind /root/.ssh/ /opt/chroot/$distro/$arch/root/.ssh
                     mount --bind /root/dev/debrewery/src/lib/debrewery-agent.sh /opt/chroot/$distro/$arch/usr/lib/debrewery/debrewery-agent.sh
