@@ -38,10 +38,10 @@ debclean > /dev/null
 source ./debian/package.sh
 case $BUILD_ENVIRONMENT in
     'testing')
-        FLAVOURS=$PRODUCTION_FLAVOURS
+        FLAVOURS=$TESTING_FLAVOURS
         ;;
     'production')
-        FLAVOURS=$TESTING_FLAVOURS
+        FLAVOURS=$PRODUCTION_FLAVOURS
         ;;
 esac
 if echo $FLAVOURS | grep -oq $DISTRO || [[ $FLAVOURS = 'any' ]]; then
