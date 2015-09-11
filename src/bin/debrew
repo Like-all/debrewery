@@ -15,6 +15,7 @@ function mountall {
                     mount --bind /sys/ /opt/chroot/$distro/$arch/sys
                     mount --bind /etc/resolv.conf /opt/chroot/$distro/$arch/etc/resolv.conf
                     mount --bind /etc/hostname /opt/chroot/$distro/$arch/etc/hostname
+                    mount --bind /etc/hostname /opt/chroot/$distro/$arch/etc/hosts
                     mount --bind /root/.gnupg/ /opt/chroot/$distro/$arch/root/.gnupg
                     mount --bind /root/.ssh/ /opt/chroot/$distro/$arch/root/.ssh
                     mount --bind /root/dev/debrewery/src/lib/debrewery-agent.sh /opt/chroot/$distro/$arch/usr/lib/debrewery/debrewery-agent.sh
@@ -29,6 +30,7 @@ function mountall {
                     umount /opt/chroot/$distro/$arch/sys
                     umount /opt/chroot/$distro/$arch/etc/resolv.conf
                     umount /opt/chroot/$distro/$arch/etc/hostname
+                    umount /opt/chroot/$distro/$arch/etc/hosts
                     umount /opt/chroot/$distro/$arch/root/.gnupg
                     umount /opt/chroot/$distro/$arch/root/.ssh
                     umount /opt/chroot/$distro/$arch/usr/lib/debrewery/debrewery-agent.sh
@@ -56,6 +58,7 @@ function make_debootstrap {
     mkdir /opt/chroot/$distro/$arch/root/.ssh
     mkdir /opt/chroot/$distro/$arch/usr/lib/debrewery
     touch /opt/chroot/$distro/$arch/usr/lib/debrewery/debrewery-agent.sh
+    umount /opt/chroot/$distro/$arch/etc/resolv.conf
 }
 
 case $1 in
@@ -156,7 +159,7 @@ EOF
                         mount --bind /etc/resolv.conf /opt/chroot/$distro/$arch/etc/resolv.conf
                         chroot /opt/chroot/$distro/$arch/ apt-key adv --keyserver keyserver.ubuntu.com --recv-keys "8C2C65DE"
                         chroot /opt/chroot/$distro/$arch/ bash -c 'apt-get -y --force-yes install lsb-release; echo "deb http://wasteland.ml/debian/ `lsb_release -cs` main contrib non-free" | tee /etc/apt/sources.list.d/wasteland.ml.list; apt-get update'
-                        echo 'export LANG=C' > /opt/chroot/$distro/$arch/root/.bashrc
+                        umount /opt/chroot/$distro/$arch/etc/resolv.conf
                     done
                 done
                 mountall on
