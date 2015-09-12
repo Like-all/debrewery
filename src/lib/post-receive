@@ -4,7 +4,7 @@ source $HOME/.config/debrewery/debrewery.cfg
 
 repo=`basename $PWD | cut -f 1 -d '.'`
 commitmessage=`git log -1 HEAD --pretty=format:%s`
-stable_hash=`git rev-list $TAG | head -n 1`
+stable_hash=`git rev-list stable | head -n 1`
 current_hash=`git rev-parse HEAD`
 build_environment="testing"
 
