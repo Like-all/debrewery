@@ -18,7 +18,7 @@ function mountall {
                     mount --bind /etc/hosts /opt/chroot/$distro/$arch/etc/hosts
                     mount --bind /root/.gnupg/ /opt/chroot/$distro/$arch/root/.gnupg
                     mount --bind /root/.ssh/ /opt/chroot/$distro/$arch/root/.ssh
-                    mount --bind /root/dev/debrewery/src/lib/debrewery-agent.sh /opt/chroot/$distro/$arch/usr/lib/debrewery/debrewery-agent.sh
+                    #mount --bind /root/dev/debrewery/src/lib/debrewery-agent.sh /opt/chroot/$distro/$arch/usr/lib/debrewery/debrewery-agent.sh
                 done
             done
             ;;
@@ -33,7 +33,7 @@ function mountall {
                     umount /opt/chroot/$distro/$arch/etc/hosts
                     umount /opt/chroot/$distro/$arch/root/.gnupg
                     umount /opt/chroot/$distro/$arch/root/.ssh
-                    umount /opt/chroot/$distro/$arch/usr/lib/debrewery/debrewery-agent.sh
+                    #umount /opt/chroot/$distro/$arch/usr/lib/debrewery/debrewery-agent.sh
                 done
             done
             ;;
@@ -51,13 +51,13 @@ function make_debootstrap {
     chroot /opt/chroot/$distro/$arch/ apt-get -y --force-yes install locales
     cat /opt/chroot/$distro/$arch/usr/share/i18n/SUPPORTED > /opt/chroot/$distro/$arch/etc/locale.gen
     chroot /opt/chroot/$distro/$arch/ locale-gen
-    chroot /opt/chroot/$distro/$arch/ apt-get -y --force-yes install devscripts git dh-make dupload
+    #chroot /opt/chroot/$distro/$arch/ apt-get -y --force-yes install devscripts git dh-make dupload
     mkdir /opt/chroot/$distro/$arch/opt/repo
     mkdir /opt/chroot/$distro/$arch/opt/debrewery
     mkdir /opt/chroot/$distro/$arch/root/.gnupg
     mkdir /opt/chroot/$distro/$arch/root/.ssh
-    mkdir /opt/chroot/$distro/$arch/usr/lib/debrewery
-    touch /opt/chroot/$distro/$arch/usr/lib/debrewery/debrewery-agent.sh
+    #mkdir /opt/chroot/$distro/$arch/usr/lib/debrewery
+    #touch /opt/chroot/$distro/$arch/usr/lib/debrewery/debrewery-agent.sh
     umount /opt/chroot/$distro/$arch/etc/resolv.conf
 }
 
@@ -165,7 +165,7 @@ package config;
 EOF
                         mount --bind /etc/resolv.conf /opt/chroot/$distro/$arch/etc/resolv.conf
                         chroot /opt/chroot/$distro/$arch/ apt-key adv --keyserver keyserver.ubuntu.com --recv-keys "8C2C65DE"
-                        chroot /opt/chroot/$distro/$arch/ bash -c 'apt-get -y --force-yes install lsb-release; echo "deb http://wasteland.ml/debian/ `lsb_release -cs` main contrib non-free" | tee /etc/apt/sources.list.d/wasteland.ml.list; apt-get update'
+                        chroot /opt/chroot/$distro/$arch/ bash -c 'apt-get -y --force-yes install lsb-release; echo "deb http://wasteland.ml/debian/ `lsb_release -cs` main contrib non-free" | tee /etc/apt/sources.list.d/wasteland.ml.list; apt-get update; apt-get install debrewery-agent'
                         umount /opt/chroot/$distro/$arch/etc/resolv.conf
                     done
                 done
