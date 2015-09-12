@@ -1,6 +1,7 @@
 debrewery (0.1-4) UNRELEASED; urgency=medium
 
   * First proper build
+  * Proper comparison of commit hashes
 
  -- Azer Abdullaev (Like All) <like-all@yandex.com>  Fri, 11 Sep 2015 17:21:01 +0300
 
