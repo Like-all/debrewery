@@ -1,8 +1,15 @@
-debrewery (0.1-7) UNRELEASED; urgency=medium
+debrewery (0.1-8) UNRELEASED; urgency=medium
 
+  * Make a proper global config for a developer role
+
+ -- Azer Abdullaev <buckstabu@yandex-team.ru>  Sun, 13 Sep 2015 17:39:15 +0300
+
+debrewery (0.1-7) unstable; urgency=medium
+
+  [ Azer Abdullaev (Like All) ]
   * Build with backported dh_make for precise
 
- -- Azer Abdullaev (Like All) <like-all@yandex.com>  Sun, 13 Sep 2015 14:18:41 +0300
+ -- Azer Abdullaev <buckstabu@yandex-team.ru>  Sun, 13 Sep 2015 17:39:13 +0300
 
 debrewery (0.1-6) unstable; urgency=medium
 

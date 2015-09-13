@@ -193,7 +193,8 @@ EOF
 export DEBFULLNAME="$DEBFULLNAME"
 export DEBEMAIL="$DEBEMAIL"
 NAME="$PROJECT_NAME"
-FLAVOURS="any"
+PRODUCTION_FLAVOURS="any"
+TESTING_FLAVOURS="`lsb_release -cs`"
 EOF
                     cd .. && git clone --bare $2 $2".git"
                     ssh -p $DEBREW_REMOTE_PORT "root@"$DEBREW_REMOTE_HOST mkdir -p /opt/repo
