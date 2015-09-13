@@ -2,6 +2,7 @@ debrewery (0.1-10) UNRELEASED; urgency=medium
 
   * Force installation of build dependencies from agent
   * Forced installation of debrewery-agent
+  * Roles restrictions updated
 
  -- Azer Abdullaev (Like All) <like-all@yandex.com>  Sun, 13 Sep 2015 18:35:29 +0300
 

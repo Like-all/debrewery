@@ -35,11 +35,20 @@ function mountall {
                     umount /opt/chroot/$distro/$arch/etc/hosts
                     umount /opt/chroot/$distro/$arch/root/.gnupg
                     umount /opt/chroot/$distro/$arch/root/.ssh
-                    #umount /opt/chroot/$distro/$arch/usr/lib/debrewery/debrewery-agent.sh
                 done
             done
             ;;
     esac
+}
+
+function upgrade {
+    source $GLOBAL_CONFIG
+    for distro in $DEBREW_DISTRIBUTIONS; do
+        for arch in $DEBREW_ARCHITECTURES; do
+            chroot /opt/chroot/$distro/$arch/ apt-get update
+            chroot /opt/chroot/$distro/$arch/ apt-get -y --force-yes upgrade
+        done
+    done
 }
 
 function make_debootstrap {
@@ -228,18 +237,42 @@ EOF
         fi
         ;;
     "upgrade")
-        echo "Not implemented yet"
-        ;;
+        if [ -f $GLOBAL_CONFIG ]; then
+            source $GLOBAL_CONFIG
+            case $DEBREW_MACHINE_ROLE in
+                "buildserver")
+                    upgrade
+                    ;;
+                *)
+                    echo "This command is only supported in \"buildserver\" machine role"
+                    ;;
+            esac
+        else
+            echo "No config file found"
+            exit 1
+        fi
     "mountall")
-        case $2 in
-            "on")
-                mountall on
-                ;;
-            "off")
-                mountall off
-                ;;
-        esac
-        ;;
+        if [ -f $GLOBAL_CONFIG ]; then
+            source $GLOBAL_CONFIG
+            case $DEBREW_MACHINE_ROLE in
+                "buildserver")
+                    case $2 in
+                        "on")
+                            mountall on
+                            ;;
+                        "off")
+                            mountall off
+                            ;;
+                    esac
+                    ;;
+                *)
+                    echo "This command is only supported in \"buildserver\" machine role"
+                    ;;
+            esac
+        else
+            echo "No config file found"
+            exit 1
+        fi
     "doctor")
         echo "Not implemented yet"
         ;;
