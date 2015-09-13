@@ -1,8 +1,14 @@
-debrewery (0.1-11) UNRELEASED; urgency=medium
+debrewery (0.1-12) UNRELEASED; urgency=medium
+
+  * Configure apt with force-yes parameter in debrewery-agent
+
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Sun, 13 Sep 2015 22:19:47 +0300
+
+debrewery (0.1-11) unstable; urgency=medium
 
   * Fix missing semicolons
 
- -- Azer Abdullaev (Like All) <like-all@yandex.com>  Sun, 13 Sep 2015 18:58:35 +0300
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Sun, 13 Sep 2015 22:19:45 +0300
 
 debrewery (0.1-10) unstable; urgency=medium
 

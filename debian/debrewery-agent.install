@@ -1,1 +1,2 @@
 src/lib/debrewery-agent.sh /usr/lib/debrewery/
+src/etc/90debrewery-force-yes /etc/apt/apt.conf.d/
