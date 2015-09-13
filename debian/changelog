@@ -1,8 +1,14 @@
-debrewery (0.1-6) UNRELEASED; urgency=medium
+debrewery (0.1-7) UNRELEASED; urgency=medium
+
+  * Build with backported dh_make for precise
+
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Sun, 13 Sep 2015 14:18:41 +0300
+
+debrewery (0.1-6) unstable; urgency=medium
 
   * Force rebuild
 
- -- Azer Abdullaev (Like All) <like-all@yandex.com>  Sat, 12 Sep 2015 12:44:45 +0300
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Sun, 13 Sep 2015 14:18:36 +0300
 
 debrewery (0.1-5) unstable; urgency=medium
 
