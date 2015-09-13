@@ -1,8 +1,15 @@
-debrewery (0.1-8) UNRELEASED; urgency=medium
+debrewery (0.1-9) UNRELEASED; urgency=medium
 
+  * Mount /dev/ inside chroot environments
+
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Sun, 13 Sep 2015 17:51:51 +0300
+
+debrewery (0.1-8) unstable; urgency=medium
+
+  [ Azer Abdullaev ]
   * Make a proper global config for a developer role
 
- -- Azer Abdullaev <buckstabu@yandex-team.ru>  Sun, 13 Sep 2015 17:39:15 +0300
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Sun, 13 Sep 2015 17:51:49 +0300
 
 debrewery (0.1-7) unstable; urgency=medium
 

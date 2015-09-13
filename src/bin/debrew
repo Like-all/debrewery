@@ -13,6 +13,7 @@ function mountall {
                     mount --bind /opt/repo/ /opt/chroot/$distro/$arch/opt/repo
                     mount --bind /proc/ /opt/chroot/$distro/$arch/proc
                     mount --bind /sys/ /opt/chroot/$distro/$arch/sys
+                    mount --bind /dev/ /opt/chroot/$distro/$arch/dev
                     mount --bind /etc/resolv.conf /opt/chroot/$distro/$arch/etc/resolv.conf
                     mount --bind /etc/hostname /opt/chroot/$distro/$arch/etc/hostname
                     mount --bind /etc/hosts /opt/chroot/$distro/$arch/etc/hosts
@@ -28,6 +29,7 @@ function mountall {
                     umount /opt/chroot/$distro/$arch/opt/repo
                     umount /opt/chroot/$distro/$arch/proc
                     umount /opt/chroot/$distro/$arch/sys
+                    umount /opt/chroot/$distro/$arch/dev
                     umount /opt/chroot/$distro/$arch/etc/resolv.conf
                     umount /opt/chroot/$distro/$arch/etc/hostname
                     umount /opt/chroot/$distro/$arch/etc/hosts
