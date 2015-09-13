@@ -1,10 +1,16 @@
-debrewery (0.1-10) UNRELEASED; urgency=medium
+debrewery (0.1-11) UNRELEASED; urgency=medium
+
+  * Fix missing semicolons
+
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Sun, 13 Sep 2015 18:58:35 +0300
+
+debrewery (0.1-10) unstable; urgency=medium
 
   * Force installation of build dependencies from agent
   * Forced installation of debrewery-agent
   * Roles restrictions updated
 
- -- Azer Abdullaev (Like All) <like-all@yandex.com>  Sun, 13 Sep 2015 18:35:29 +0300
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Sun, 13 Sep 2015 18:58:34 +0300
 
 debrewery (0.1-9) unstable; urgency=medium
 

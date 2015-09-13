@@ -251,6 +251,7 @@ EOF
             echo "No config file found"
             exit 1
         fi
+        ;;
     "mountall")
         if [ -f $GLOBAL_CONFIG ]; then
             source $GLOBAL_CONFIG
@@ -273,6 +274,7 @@ EOF
             echo "No config file found"
             exit 1
         fi
+        ;;
     "doctor")
         echo "Not implemented yet"
         ;;
