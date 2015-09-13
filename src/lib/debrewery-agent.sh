@@ -45,6 +45,7 @@ case $BUILD_ENVIRONMENT in
         ;;
 esac
 if echo $FLAVOURS | grep -oq $DISTRO || [[ $FLAVOURS = 'any' ]]; then
+    mk-build-deps --install ./debian/control
     if [ -f ./autogen.sh ]; then
         ./autogen.sh
     fi
