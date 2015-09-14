@@ -174,7 +174,7 @@ EOF
                         mount --bind /etc/resolv.conf /opt/chroot/$distro/$arch/etc/resolv.conf
                         case `chroot /opt/chroot/$distro/$arch/ lsb_release -is` in
                             'Debian')
-                                echo 'http://mirror.yandex.ru/debian '`chroot /opt/chroot/$distro/$arch/ lsb_release -cs`' main contrib non-free' > opt/chroot/$distro/$arch/etc/apt/sources.list
+                                echo 'http://mirror.yandex.ru/debian '`chroot /opt/chroot/$distro/$arch/ lsb_release -cs`' main contrib non-free' > /opt/chroot/$distro/$arch/etc/apt/sources.list
                                 ;;
                             'Ubuntu')
                                 echo 'http://mirror.yandex.ru/ubuntu '`chroot /opt/chroot/$distro/$arch/ lsb_release -cs`' main multiverse universe restricted' > opt/chroot/$distro/$arch/etc/apt/sources.list
