@@ -1,2 +1,3 @@
 /usr/lib/debrewery/
 /etc/apt/apt.conf.d/
+/etc/apt/profile.d/
