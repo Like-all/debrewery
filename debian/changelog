@@ -1,8 +1,14 @@
-debrewery (0.1-14) UNRELEASED; urgency=medium
+debrewery (0.1-15) UNRELEASED; urgency=medium
+
+  * Add equivs to agent's dependencies
+
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Mon, 14 Sep 2015 16:54:57 +0300
+
+debrewery (0.1-14) unstable; urgency=medium
 
   * Trying PERL_BADLANG within agent
 
- -- Azer Abdullaev (Like All) <like-all@yandex.com>  Mon, 14 Sep 2015 13:06:31 +0300
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Mon, 14 Sep 2015 16:54:56 +0300
 
 debrewery (0.1-13) unstable; urgency=medium
 
