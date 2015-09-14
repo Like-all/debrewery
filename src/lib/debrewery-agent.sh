@@ -20,7 +20,7 @@ while getopts "d:a:e:r:m:" opts; do
     esac
 done
 
-export PERL_BADLANG='0'
+export LANG='C'
 FLAVOURS='any'
 
 echo -e '\e[0;32m'$DISTRO'/'$ARCH'\e[0m'

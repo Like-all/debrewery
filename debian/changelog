@@ -1,8 +1,14 @@
-debrewery (0.1-15) UNRELEASED; urgency=medium
+debrewery (0.1-16) UNRELEASED; urgency=medium
+
+  * Trying to suppress perl warnings with export LANG=C
+
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Mon, 14 Sep 2015 17:51:52 +0300
+
+debrewery (0.1-15) unstable; urgency=medium
 
   * Add equivs to agent's dependencies
 
- -- Azer Abdullaev (Like All) <like-all@yandex.com>  Mon, 14 Sep 2015 16:54:57 +0300
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Mon, 14 Sep 2015 17:51:51 +0300
 
 debrewery (0.1-14) unstable; urgency=medium
 

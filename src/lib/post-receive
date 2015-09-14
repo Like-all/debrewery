@@ -2,6 +2,8 @@
 
 source $HOME/.config/debrewery/debrewery.cfg
 
+export LANG='C'
+
 repo=`basename $PWD | cut -f 1 -d '.'`
 commitmessage=`git log -1 HEAD --pretty=format:%s`
 stable_hash=`git rev-list stable | head -n 1`
