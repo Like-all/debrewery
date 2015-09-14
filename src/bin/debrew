@@ -172,6 +172,14 @@ package config;
 };
 EOF
                         mount --bind /etc/resolv.conf /opt/chroot/$distro/$arch/etc/resolv.conf
+                        case `chroot /opt/chroot/$distro/$arch/ lsb_release -is` in
+                            'Debian')
+                                echo 'http://mirror.yandex.ru/debian '`chroot /opt/chroot/$distro/$arch/ lsb_release -cs`' main contrib non-free' > opt/chroot/$distro/$arch/etc/apt/sources.list
+                                ;;
+                            'Ubuntu')
+                                echo 'http://mirror.yandex.ru/ubuntu '`chroot /opt/chroot/$distro/$arch/ lsb_release -cs`' main multiverse universe restricted' > opt/chroot/$distro/$arch/etc/apt/sources.list
+                                ;;
+                        esac
                         chroot /opt/chroot/$distro/$arch/ apt-key adv --keyserver keyserver.ubuntu.com --recv-keys "8C2C65DE"
                         chroot /opt/chroot/$distro/$arch/ bash -c 'apt-get -y --force-yes install lsb-release; echo "deb http://wasteland.ml/debian/ `lsb_release -cs` main contrib non-free" | tee /etc/apt/sources.list.d/wasteland.ml.list; apt-get update; apt-get -y --force-yes install debrewery-agent'
                         umount /opt/chroot/$distro/$arch/etc/resolv.conf

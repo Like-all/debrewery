@@ -1,8 +1,14 @@
-debrewery (0.1-16) UNRELEASED; urgency=medium
+debrewery (0.1-17) UNRELEASED; urgency=medium
+
+  * Use all repository sections
+
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Mon, 14 Sep 2015 19:10:32 +0300
+
+debrewery (0.1-16) unstable; urgency=medium
 
   * Trying to suppress perl warnings with export LANG=C
 
- -- Azer Abdullaev (Like All) <like-all@yandex.com>  Mon, 14 Sep 2015 17:51:52 +0300
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Mon, 14 Sep 2015 19:10:30 +0300
 
 debrewery (0.1-15) unstable; urgency=medium
 
