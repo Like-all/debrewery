@@ -58,6 +58,8 @@ if echo $FLAVOURS | grep -oq $DISTRO || [[ $FLAVOURS = 'any' ]]; then
         echo -e '\e[0;34mbuild succeeded\e[0m'
         lintian_errors=$(more +/'running lintian' /tmp/debuild.log | grep 'E:' | wc -l)
         lintian_warnings=$(more +/'running lintian' /tmp/debuild.log | grep 'W:' | wc -l)
+        echo "X-Lintian-Errors: $lintian_errors" >> /opt/debrewery/*.changes
+        echo "X-Lintian-Warnings: $lintian_warnings" >> /opt/debrewery/*.changes
     else
         echo -e '\e[0;31mbuild failed'
         tail -n 15 /tmp/debuild.log

@@ -1,8 +1,15 @@
-debrewery (0.1-12) UNRELEASED; urgency=medium
+debrewery (0.1-13) UNRELEASED; urgency=medium
+
+  * Silence perl warnings
+  * Write extra variables into changes file
+
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Mon, 14 Sep 2015 12:48:25 +0300
+
+debrewery (0.1-12) unstable; urgency=medium
 
   * Configure apt with force-yes parameter in debrewery-agent
 
- -- Azer Abdullaev (Like All) <like-all@yandex.com>  Sun, 13 Sep 2015 22:19:47 +0300
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Mon, 14 Sep 2015 12:48:22 +0300
 
 debrewery (0.1-11) unstable; urgency=medium
 
