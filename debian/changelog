@@ -1,8 +1,14 @@
-debrewery (0.1-18) UNRELEASED; urgency=medium
+debrewery (0.1-19) UNRELEASED; urgency=medium
+
+  * Build bump
+
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Tue, 15 Sep 2015 10:09:32 +0300
+
+debrewery (0.1-18) unstable; urgency=medium
 
   * Fix a typo
 
- -- Azer Abdullaev (Like All) <like-all@yandex.com>  Mon, 14 Sep 2015 19:24:05 +0300
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Tue, 15 Sep 2015 10:09:30 +0300
 
 debrewery (0.1-17) unstable; urgency=medium
 
