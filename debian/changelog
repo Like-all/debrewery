@@ -1,8 +1,14 @@
-debrewery (0.1-19) UNRELEASED; urgency=medium
+debrewery (0.1-20) UNRELEASED; urgency=medium
+
+  * Fix repo strings
+
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Tue, 15 Sep 2015 10:34:21 +0300
+
+debrewery (0.1-19) unstable; urgency=medium
 
   * Build bump
 
- -- Azer Abdullaev (Like All) <like-all@yandex.com>  Tue, 15 Sep 2015 10:09:32 +0300
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Tue, 15 Sep 2015 10:34:19 +0300
 
 debrewery (0.1-18) unstable; urgency=medium
 
