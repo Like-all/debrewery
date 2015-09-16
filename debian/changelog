@@ -1,8 +1,14 @@
-debrewery (0.1-24) UNRELEASED; urgency=medium
+debrewery (0.1-25) UNRELEASED; urgency=medium
+
+  * Don't check GPG-keys in debootstrap
+
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Wed, 16 Sep 2015 15:44:58 +0300
+
+debrewery (0.1-24) unstable; urgency=medium
 
   * Dependency fix
 
- -- Azer Abdullaev (Like All) <like-all@yandex.com>  Wed, 16 Sep 2015 13:49:34 +0300
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Wed, 16 Sep 2015 15:44:56 +0300
 
 debrewery (0.1-23) unstable; urgency=medium
 
