@@ -1,8 +1,14 @@
-debrewery (0.1-23) UNRELEASED; urgency=medium
+debrewery (0.1-24) UNRELEASED; urgency=medium
+
+  * Dependency fix
+
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Wed, 16 Sep 2015 13:49:34 +0300
+
+debrewery (0.1-23) unstable; urgency=medium
 
   * Depend on backported debootstrap
 
- -- Azer Abdullaev (Like All) <like-all@yandex.com>  Wed, 16 Sep 2015 12:52:09 +0300
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Wed, 16 Sep 2015 13:49:33 +0300
 
 debrewery (0.1-22) unstable; urgency=medium
 
