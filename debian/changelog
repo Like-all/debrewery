@@ -1,8 +1,14 @@
-debrewery (0.1-22) UNRELEASED; urgency=medium
+debrewery (0.1-23) UNRELEASED; urgency=medium
+
+  * Depend on backported debootstrap
+
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Wed, 16 Sep 2015 12:52:09 +0300
+
+debrewery (0.1-22) unstable; urgency=medium
 
   * Depend on debian-archive-keyring or ubuntu-archive-keyring
 
- -- Azer Abdullaev (Like All) <like-all@yandex.com>  Tue, 15 Sep 2015 14:29:27 +0300
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Wed, 16 Sep 2015 12:52:08 +0300
 
 debrewery (0.1-21) unstable; urgency=medium
 
