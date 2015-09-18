@@ -1,6 +1,5 @@
-export DEBFULLNAME="Azer Abdullaev (Like All)"
-export DEBEMAIL="like-all@yandex.com"
+export DEBFULLNAME="Azer Abdullaev"
+export DEBEMAIL="buckstabu@yandex-team.ru"
 NAME="debrewery"
 PRODUCTION_FLAVOURS="any"
 TESTING_FLAVOURS="jessie"
-#force rebuild
