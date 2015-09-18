@@ -1,8 +1,14 @@
-debrewery (0.1-26) UNRELEASED; urgency=medium
+debrewery (0.1-27) UNRELEASED; urgency=medium
+
+  * Force rebuild
+
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Fri, 18 Sep 2015 16:32:11 +0300
+
+debrewery (0.1-26) unstable; urgency=medium
 
   * Reset all submodules before start
 
- -- Azer Abdullaev (Like All) <like-all@yandex.com>  Fri, 18 Sep 2015 15:02:33 +0300
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Fri, 18 Sep 2015 16:31:52 +0300
 
 debrewery (0.1-25) unstable; urgency=medium
 
