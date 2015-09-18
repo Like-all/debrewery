@@ -1,8 +1,14 @@
-debrewery (0.1-25) UNRELEASED; urgency=medium
+debrewery (0.1-26) UNRELEASED; urgency=medium
+
+  * Reset all submodules before start
+
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Fri, 18 Sep 2015 15:02:33 +0300
+
+debrewery (0.1-25) unstable; urgency=medium
 
   * Don't check GPG-keys in debootstrap
 
- -- Azer Abdullaev (Like All) <like-all@yandex.com>  Wed, 16 Sep 2015 15:44:58 +0300
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Fri, 18 Sep 2015 15:02:31 +0300
 
 debrewery (0.1-24) unstable; urgency=medium
 

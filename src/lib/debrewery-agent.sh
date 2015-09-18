@@ -30,6 +30,7 @@ if [ -d $REPO ]; then
     cd $REPO
     unset GIT_DIR
     git reset --hard
+    git submodule foreach --recursive git reset --hard
     git pull
     git submodule update --recursive
 else
