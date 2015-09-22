@@ -1,8 +1,14 @@
-debrewery (0.1-27) UNRELEASED; urgency=medium
+debrewery (0.1-28) UNRELEASED; urgency=medium
+
+  * Using -sa parameter with debuild for uploading source tarball
+
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Tue, 22 Sep 2015 12:13:11 +0300
+
+debrewery (0.1-27) unstable; urgency=medium
 
   * Force rebuild
 
- -- Azer Abdullaev (Like All) <like-all@yandex.com>  Fri, 18 Sep 2015 16:32:11 +0300
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Tue, 22 Sep 2015 12:13:09 +0300
 
 debrewery (0.1-26) unstable; urgency=medium
 
