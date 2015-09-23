@@ -161,14 +161,14 @@ package config;
     login => "$DEBREW_DUPLOAD_TESTING_USERNAME",
     method => "scpb",
     options => "-P $DEBREW_DUPLOAD_TESTING_PORT",
-    incoming => "`echo $DEBREW_DUPLOAD_TESTING_PATH | sed "s|#distro|$distro|"`",
+    incoming => "`echo $DEBREW_DUPLOAD_TESTING_PATH | sed "s|#distro|$distro|;s|#arch|$arch|"`",
 };
 \$cfg{'production'} = {
     fqdn => "$DEBREW_DUPLOAD_PRODUCTION_FQDN",
     login => "$DEBREW_DUPLOAD_PRODUCTION_USERNAME",
     method => "scpb",
     options => "-P $DEBREW_DUPLOAD_PRODUCTION_PORT",
-    incoming => "`echo $DEBREW_DUPLOAD_PRODUCTION_PATH | sed "s|#distro|$distro|"`",
+    incoming => "`echo $DEBREW_DUPLOAD_PRODUCTION_PATH | sed "s|#distro|$distro|;s|#arch|$arch|"`",
 };
 EOF
                         mount --bind /etc/resolv.conf /opt/chroot/$distro/$arch/etc/resolv.conf

@@ -1,8 +1,14 @@
-debrewery (0.1-29) UNRELEASED; urgency=medium
+debrewery (0.1-30) UNRELEASED; urgency=medium
+
+  * Use #arch variable in dupload path
+
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Wed, 23 Sep 2015 10:06:28 +0300
+
+debrewery (0.1-29) unstable; urgency=medium
 
   * Changing order of debuild's args
 
- -- Azer Abdullaev (Like All) <like-all@yandex.com>  Tue, 22 Sep 2015 12:31:11 +0300
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Wed, 23 Sep 2015 10:06:11 +0300
 
 debrewery (0.1-28) unstable; urgency=medium
 
