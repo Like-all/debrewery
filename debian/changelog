@@ -1,8 +1,15 @@
-debrewery (0.1-30) UNRELEASED; urgency=medium
+debrewery (0.1-31) UNRELEASED; urgency=medium
 
+  * Use qemu-deboostrap instead of generic debootstrap
+
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Sun, 25 Oct 2015 22:44:44 +0200
+
+debrewery (0.1-30) unstable; urgency=medium
+
+  [ Azer Abdullaev (Like All) ]
   * Use #arch variable in dupload path
 
- -- Azer Abdullaev (Like All) <like-all@yandex.com>  Wed, 23 Sep 2015 10:06:28 +0300
+ -- Azer Abdullaev <buckstabu@yandex-team.ru>  Sun, 25 Oct 2015 22:44:21 +0200
 
 debrewery (0.1-29) unstable; urgency=medium
 

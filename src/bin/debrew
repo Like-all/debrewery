@@ -55,7 +55,7 @@ function make_debootstrap {
     distro=$1
     arch=$2
     mkdir -p /opt/chroot/$distro/$arch/
-    debootstrap --no-check-gpg --arch=$arch --foreign $distro /opt/chroot/$distro/$arch/
+    /usr/sbin/qemu-debootstrap --no-check-gpg --arch=$arch --foreign $distro /opt/chroot/$distro/$arch/
     chroot /opt/chroot/$distro/$arch/ /debootstrap/debootstrap --second-stage
     mount --bind /etc/resolv.conf /opt/chroot/$distro/$arch/etc/resolv.conf
     chroot /opt/chroot/$distro/$arch/ apt-get update
