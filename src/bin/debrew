@@ -14,6 +14,7 @@ function mountall {
                     mount --bind /proc/ /opt/chroot/$distro/$arch/proc
                     mount --bind /sys/ /opt/chroot/$distro/$arch/sys
                     mount --bind /dev/ /opt/chroot/$distro/$arch/dev
+                    mount --bind /dev/pts /opt/chroot/$distro/$arch/dev/pts
                     mount --bind /etc/resolv.conf /opt/chroot/$distro/$arch/etc/resolv.conf
                     mount --bind /etc/hostname /opt/chroot/$distro/$arch/etc/hostname
                     mount --bind /etc/hosts /opt/chroot/$distro/$arch/etc/hosts
@@ -30,6 +31,7 @@ function mountall {
                     umount /opt/chroot/$distro/$arch/proc
                     umount /opt/chroot/$distro/$arch/sys
                     umount /opt/chroot/$distro/$arch/dev
+                    umount /opt/chroot/$distro/$arch/dev/pts
                     umount /opt/chroot/$distro/$arch/etc/resolv.conf
                     umount /opt/chroot/$distro/$arch/etc/hostname
                     umount /opt/chroot/$distro/$arch/etc/hosts
@@ -61,7 +63,7 @@ function make_debootstrap {
     chroot /opt/chroot/$distro/$arch/ apt-get update
     chroot /opt/chroot/$distro/$arch/ apt-get -y --force-yes install locales
     cat /opt/chroot/$distro/$arch/usr/share/i18n/SUPPORTED > /opt/chroot/$distro/$arch/etc/locale.gen
-    chroot /opt/chroot/$distro/$arch/ locale-gen
+    #chroot /opt/chroot/$distro/$arch/ locale-gen
     mkdir /opt/chroot/$distro/$arch/opt/repo
     mkdir /opt/chroot/$distro/$arch/opt/debrewery
     mkdir /opt/chroot/$distro/$arch/root/.gnupg
