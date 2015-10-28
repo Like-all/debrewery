@@ -1,8 +1,14 @@
-debrewery (0.1-32) UNRELEASED; urgency=medium
+debrewery (0.1-33) UNRELEASED; urgency=medium
+
+  * force rebuild
+
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Wed, 28 Oct 2015 17:26:44 +0200
+
+debrewery (0.1-32) unstable; urgency=medium
 
   * mount /dev/pts
 
- -- Azer Abdullaev (Like All) <like-all@yandex.com>  Mon, 26 Oct 2015 14:50:25 +0200
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Wed, 28 Oct 2015 17:26:39 +0200
 
 debrewery (0.1-31) unstable; urgency=medium
 
