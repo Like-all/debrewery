@@ -30,8 +30,8 @@ function mountall {
                     umount /opt/chroot/$distro/$arch/opt/repo
                     umount /opt/chroot/$distro/$arch/proc
                     umount /opt/chroot/$distro/$arch/sys
-                    umount /opt/chroot/$distro/$arch/dev
                     umount /opt/chroot/$distro/$arch/dev/pts
+                    umount /opt/chroot/$distro/$arch/dev
                     umount /opt/chroot/$distro/$arch/etc/resolv.conf
                     umount /opt/chroot/$distro/$arch/etc/hostname
                     umount /opt/chroot/$distro/$arch/etc/hosts
