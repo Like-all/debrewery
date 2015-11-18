@@ -1,8 +1,14 @@
-debrewery (0.1-35) UNRELEASED; urgency=medium
+debrewery (0.1-36) UNRELEASED; urgency=medium
+
+  * Disable autogen.sh kludge
+
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Wed, 18 Nov 2015 18:05:25 +0200
+
+debrewery (0.1-35) unstable; urgency=medium
 
   * Unmount /dev/pts before unmountig /dev/
 
- -- Azer Abdullaev (Like All) <like-all@yandex.com>  Thu, 29 Oct 2015 16:48:54 +0200
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Wed, 18 Nov 2015 18:04:53 +0200
 
 debrewery (0.1-34) unstable; urgency=medium
 

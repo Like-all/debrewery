@@ -48,9 +48,9 @@ case $BUILD_ENVIRONMENT in
 esac
 if echo $FLAVOURS | grep -oq $DISTRO || [[ $FLAVOURS = 'any' ]]; then
     mk-build-deps --install ./debian/control
-    if [ -f ./autogen.sh ]; then
-        ./autogen.sh
-    fi
+    #if [ -f ./autogen.sh ]; then
+    #    ./autogen.sh
+    #fi
     dch --preserve --newversion `dpkg-parsechangelog | grep Version | cut -f 2 -d ' '`"+"$DISTRO ""
     dch --preserve -D $DISTRO --force-distribution ""
     program_version=`dpkg-parsechangelog | grep Version | cut -f 2 -d ' ' | cut -f 1 -d '-'`
