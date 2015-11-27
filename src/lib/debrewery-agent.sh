@@ -48,9 +48,6 @@ case $BUILD_ENVIRONMENT in
 esac
 if echo $FLAVOURS | grep -oq $DISTRO || [[ $FLAVOURS = 'any' ]]; then
     mk-build-deps --install ./debian/control
-    #if [ -f ./autogen.sh ]; then
-    #    ./autogen.sh
-    #fi
     dch --preserve --newversion `dpkg-parsechangelog | grep Version | cut -f 2 -d ' '`"+"$DISTRO ""
     dch --preserve -D $DISTRO --force-distribution ""
     program_version=`dpkg-parsechangelog | grep Version | cut -f 2 -d ' ' | cut -f 1 -d '-'`
@@ -62,10 +59,12 @@ if echo $FLAVOURS | grep -oq $DISTRO || [[ $FLAVOURS = 'any' ]]; then
         lintian_warnings=$(more +/'running lintian' /tmp/debuild.log | grep 'W:' | wc -l)
         echo "X-Lintian-Errors: $lintian_errors" >> /opt/debrewery/*.changes
         echo "X-Lintian-Warnings: $lintian_warnings" >> /opt/debrewery/*.changes
+        dupload --nomail --to $BUILD_ENVIRONMENT /opt/debrewery/*.changes
     else
         echo -e '\e[0;31mbuild failed'
         tail -n 15 /tmp/debuild.log
         echo -e '\e[0m'
     fi
-    dupload --nomail --to $BUILD_ENVIRONMENT /opt/debrewery/*.changes
+    log=`curl -s -F 'f:1=@/tmp/debuild.log' ix.io`
+    echo -e '\e[0;32mLog: \e[0;34m'$log'\e[0m'
 fi

@@ -1,8 +1,14 @@
-debrewery (0.1-36) UNRELEASED; urgency=medium
+debrewery (0.1-37) UNRELEASED; urgency=medium
+
+  * Push build log to ix.io
+
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Fri, 27 Nov 2015 16:29:43 +0200
+
+debrewery (0.1-36) unstable; urgency=medium
 
   * Disable autogen.sh kludge
 
- -- Azer Abdullaev (Like All) <like-all@yandex.com>  Wed, 18 Nov 2015 18:05:25 +0200
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Fri, 27 Nov 2015 16:29:39 +0200
 
 debrewery (0.1-35) unstable; urgency=medium
 
