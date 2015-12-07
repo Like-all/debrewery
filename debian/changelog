@@ -1,8 +1,14 @@
-debrewery (0.1-37) UNRELEASED; urgency=medium
+debrewery (0.1-38) UNRELEASED; urgency=medium
+
+  * Don't build source architecture packages
+
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Mon, 07 Dec 2015 15:51:50 +0200
+
+debrewery (0.1-37) unstable; urgency=medium
 
   * Push build log to ix.io
 
- -- Azer Abdullaev (Like All) <like-all@yandex.com>  Fri, 27 Nov 2015 16:29:43 +0200
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Mon, 07 Dec 2015 15:51:49 +0200
 
 debrewery (0.1-36) unstable; urgency=medium
 
