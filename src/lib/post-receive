@@ -7,6 +7,7 @@ export LANG='C'
 repo=`basename $PWD | cut -f 1 -d '.'`
 commitmessage=`git log -1 HEAD --pretty=format:%s`
 stable_hash=`git rev-list stable | head -n 1`
+sequental_hash=`git rev-list sequental | head -n 1`
 current_hash=`git rev-parse HEAD`
 build_environment="testing"
 
@@ -16,12 +17,20 @@ else
     build_environment="production"
 fi
 
-for distro in $DEBREW_DISTRIBUTIONS; do
-    for arch in $DEBREW_ARCHITECTURES; do
-        chroot /opt/chroot/$distro/$arch /usr/lib/debrewery/debrewery-agent.sh -d $distro -a $arch -e $build_environment -r $repo -m $commitmessage &
+if [[ $sequental_hash != $current_hash ]]; then
+    for distro in $DEBREW_DISTRIBUTIONS; do
+        for arch in $DEBREW_ARCHITECTURES; do
+            chroot /opt/chroot/$distro/$arch /usr/lib/debrewery/debrewery-agent.sh -d $distro -a $arch -e $build_environment -r $repo -m $commitmessage &
+        done
     done
-done
 
-wait
+    wait
+else
+    for distro in $DEBREW_DISTRIBUTIONS; do
+        for arch in $DEBREW_ARCHITECTURES; do
+            chroot /opt/chroot/$distro/$arch /usr/lib/debrewery/debrewery-agent.sh -d $distro -a $arch -e $build_environment -r $repo -m $commitmessage
+        done
+    done
+fi
 
 echo -e "\a"

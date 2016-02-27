@@ -1,8 +1,14 @@
-debrewery (0.1-38) UNRELEASED; urgency=medium
+debrewery (0.2-1) UNRELEASED; urgency=medium
+
+  * Use sequental tag for sequental builds
+
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Sat, 27 Feb 2016 04:28:43 +0200
+
+debrewery (0.1-38) unstable; urgency=medium
 
   * Don't build source architecture packages
 
- -- Azer Abdullaev (Like All) <like-all@yandex.com>  Mon, 07 Dec 2015 15:51:50 +0200
+ -- Azer Abdullaev (Like All) <like-all@yandex.com>  Sat, 27 Feb 2016 04:28:41 +0200
 
 debrewery (0.1-37) unstable; urgency=medium
 
